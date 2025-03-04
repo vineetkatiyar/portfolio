@@ -1,8 +1,6 @@
 import type { Metadata } from 'next'
 import { Inter, Playfair_Display } from 'next/font/google'
-
 import { cn } from '@/lib/utils'
-
 import './globals.css'
 import Providers from '@/components/providers'
 import Header from '@/components/header'
