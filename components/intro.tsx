@@ -24,7 +24,7 @@ export default function Intro() {
             href='/contact'
             className='group flex items-center gap-2 rounded-full bg-gray-500 px-7 py-3 text-white outline-none'
           >
-            Contact me here
+            Contact me
             <BsArrowRight className='' />
           </Link>
 
@@ -33,7 +33,7 @@ export default function Intro() {
             href='/CV.pdf'
             download
           >
-            Download CV
+            resume
             <HiDownload className='' />
           </a>
         </div>
