@@ -81,7 +81,7 @@ export default function ContactForm() {
       <div className='relative'>
         <form
           onSubmit={handleSubmit(processForm)}
-          className='mt-10 lg:flex-auto'
+          className='lg:flex-auto'
           noValidate
         >
           <div className='grid grid-cols-1 gap-6 sm:grid-cols-2'>
