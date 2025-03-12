@@ -18,9 +18,6 @@ export default function Header() {
           <li className='transition-colors hover:text-foreground'>
             <Link href='/projects'>Projects</Link>
           </li>
-          <li className='transition-colors hover:text-foreground'>
-            <Link href='/contact'>Contact</Link>
-          </li>
         </ul>
 
         <div>

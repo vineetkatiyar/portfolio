@@ -20,13 +20,13 @@ export default function Intro() {
           something extraordinary together!
         </p>
         <div className='flex space-x-3 '>
-          <Link
+          {/* <Link
             href='/contact'
             className='group flex items-center gap-2 rounded-full bg-gray-500 px-7 py-3 text-white outline-none'
           >
             Contact me
             <BsArrowRight className='' />
-          </Link>
+          </Link> */}
 
           <a
             className='group flex items-center gap-2 rounded-full bg-gray-500 px-7 py-3 text-white outline-none'

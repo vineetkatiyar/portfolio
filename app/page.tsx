@@ -1,7 +1,9 @@
+import ContactForm from '@/components/contact-form'
 import Intro from '@/components/intro'
 import RecentPosts from '@/components/recent-posts'
 import RecentProjects from '@/components/recent-projects'
 import Skills from '@/components/skills'
+// import Contact from './contact/page'
 
 export default function Home() {
   return (
@@ -11,6 +13,7 @@ export default function Home() {
         <Skills />
         <RecentPosts />
         <RecentProjects />
+        <ContactForm />
       </div>
     </section>
   )
