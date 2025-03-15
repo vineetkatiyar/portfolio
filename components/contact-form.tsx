@@ -45,7 +45,7 @@ export default function ContactForm() {
       <div className='container max-w-3xl space-y-10'>
         <h2 className='title'>Contact me!</h2>
 
-        <section className='relative isolate m-5'>
+        <section className='relative isolate'>
           {/* Background pattern */}
           <svg
             className='absolute inset-0 -z-10 h-full w-full stroke-zinc-200 opacity-75 [mask-image:radial-gradient(100%_100%_at_top_right,white,transparent)] dark:stroke-zinc-700'
