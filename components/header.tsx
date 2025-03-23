@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import { ThemeToggle } from './theme-toggle'
+import NavLink from './nav-link'
 
 export default function Header() {
   return (
@@ -10,16 +11,17 @@ export default function Header() {
             VK
           </Link>
         </div>
-
-        <ul className='flex items-center gap-6 text-lg font-light text-muted-foreground sm:gap-10'>
-          <li className='transition-colors hover:text-foreground'>
-            <Link href='/posts'>Posts</Link>
+        <ul className='text-md flex items-center gap-6 font-normal text-muted-foreground sm:gap-10'>
+          <li className='transition-colors hover:text-cyan-700'>
+            <NavLink href='/posts'>Posts</NavLink>
           </li>
-          <li className='transition-colors hover:text-foreground'>
-            <Link href='/projects'>Projects</Link>
+          <li className='transition-colors hover:text-cyan-700'>
+            <NavLink href='/projects'>Projects</NavLink>
+          </li>
+          <li className='transition-colors hover:text-cyan-700'>
+            <NavLink href='/contact'>Contact</NavLink>
           </li>
         </ul>
-
         <div>
           <ThemeToggle />
         </div>

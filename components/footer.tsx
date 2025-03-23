@@ -1,7 +1,7 @@
+import Link from 'next/link'
 import { JSX, SVGProps } from 'react'
 
 const navigation = [
- 
   {
     name: 'LinkedIn',
     href: 'https://www.linkedin.com/in/vineetkatiyar98/',
@@ -42,22 +42,35 @@ export default function Footer() {
   return (
     <footer className='py-8'>
       <div className='container max-w-3xl'>
-        <div className='md:flex md:items-center md:justify-between'>
-          <div className='flex justify-center space-x-6 md:order-2'>
+        <div className='flex flex-col space-y-8'>
+          <div className='order-1 mt-8'>
+            <ul className='flex justify-center space-x-16 text-muted-foreground'> 
+              <li className='transition-colors hover:text-cyan-700'>
+                <Link href='/posts'>Posts</Link>
+              </li>
+              <li className='transition-colors hover:text-cyan-700'>
+                <Link href='/projects'>Projects</Link>
+              </li>
+              <li className='transition-colors hover:text-cyan-700'>
+                <Link href='/contact'>Contact</Link>
+              </li>
+            </ul>
+          </div>
+          <div className='order-2 flex justify-center space-x-16'>
             {navigation.map(item => (
               <a
                 key={item.name}
                 href={item.href}
                 target='_blank'
                 rel='noreferrer noopener'
-                className='text-muted-foreground hover:text-foreground'
+                className='text-muted-foreground hover:text-cyan-700'
               >
                 <span className='sr-only'>{item.name}</span>
                 <item.icon aria-hidden='true' className='h-5 w-5' />
               </a>
             ))}
           </div>
-          <div className='mt-8 md:order-1 md:mt-0'>
+          <div className='order-3 mt-8'>
             <p className='text-center text-xs leading-5 text-muted-foreground'>
               &copy; {new Date().getFullYear()} Your Company. All rights
               reserved.

@@ -19,8 +19,8 @@ export async function sendEmail(data: ContactFormInputs) {
   try {
     const { name, email, message } = result.data
     const { data, error } = await resend.emails.send({
-      from: "Contact Form <onboarding@resend.dev>",
-      to: "vineetkatiyar98@gmail.com",
+      from: 'Contact Form < >',
+      to: 'vineetkatiyar98@gmail.com',
       subject: 'Contact form submission',
       text: `Name: ${name}\nEmail: ${email}\nMessage: ${message}`,
       react: ContactFormEmail({ name, email, message })
@@ -36,3 +36,25 @@ export async function sendEmail(data: ContactFormInputs) {
   }
 }
 
+export async function subscribe(data: NewsletterFormInputs) {
+  const result = NewsletterFormSchema.safeParse(data)
+
+  if (result.error) {
+    return { error: result.error.format() }
+  }
+  try {
+    const { email } = result.data
+    const { data, error } = await resend.contacts.create({
+      email: email,
+      audienceId: process.env.RESEND_AUDIENCE_ID as string
+    })
+
+    if (!data || error) {
+      throw new Error('Failed to subscribe')
+    }
+
+    return { success: true }
+  } catch (error) {
+    return { error }
+  }
+}

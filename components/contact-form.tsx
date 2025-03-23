@@ -44,7 +44,6 @@ export default function ContactForm() {
     <section className=''>
       <div className='container max-w-3xl space-y-10'>
         <h2 className='title'>Let&#39;s talk</h2>
-
         <section className='relative isolate'>
           {/* Background pattern */}
           <svg

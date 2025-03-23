@@ -1,19 +1,18 @@
-import ContactForm from '@/components/contact-form'
 import Intro from '@/components/intro'
+import NewsletterForm from '@/components/news-letter-form'
 import RecentPosts from '@/components/recent-posts'
 import RecentProjects from '@/components/recent-projects'
 import Skills from '@/components/skills'
-// import Contact from './contact/page'
 
 export default function Home() {
   return (
-    <section className='pt-40'>
+    <section className='pt-40 pb-16'>
       <div className='container max-w-3xl'>
         <Intro />
         <Skills />
         <RecentPosts />
         <RecentProjects />
-        <ContactForm />
+        <NewsletterForm />
       </div>
     </section>
   )
