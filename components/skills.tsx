@@ -7,7 +7,7 @@ export default function Skills() {
   return (
     <section
       id='skills'
-      className='mb-10 max-w-[53rem] scroll-mt-28 text-center sm:mb-24'
+      className='mb-10 max-w-[53rem] text-center sm:mb-24'
     >
       <h2 className='title mb-10 text-left'>My Skills</h2>
       <ul className='flex flex-wrap justify-center gap-2'>
