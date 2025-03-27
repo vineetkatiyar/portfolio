@@ -15,6 +15,8 @@
 ✅ **Structured Practice** – Stores questions in **Firebase** for organized mock interviews.
 ✅ **AI-Powered Interviewer** – Utilizes **Vapi AI Assistant** to simulate recruiter interactions.
 ✅ **Full-Stack Application** – Built with **Next.js 15** for a fast and interactive experience.
+✅ **Feeback** – Whenever interview is completed then the google gemini give you a feedback.
+✅ **Theme** – Dark and Light theme.
 
 ## 🔧 Tech Stack
 - **Frontend:** Next.js 15, React
@@ -27,8 +29,8 @@
 Interview preparation can be challenging, and practicing alone isn’t always effective. This app provides a **realistic interview simulation**, helping users gain confidence
 
 ## 🚀 Live Demo & Repository
-🔗 **Live App:** [https://ai-mock-interview-omega-black.vercel.app/](#)  
-💻 **GitHub Repository:** [https://github.com/vineetkatiyar/ai-mock-interview](#)
+- **Live Demo:** [MPrep](https://ai-mock-interview-omega-black.vercel.app)
+- **GitHub Repository:** [MPrep on GitHub](https://github.com/vineetkatiyar/ai-mock-interview)
 
 ## 🛠️ Installation & Setup
 ```bash
@@ -45,16 +47,16 @@ npm run dev
 
 ## 🚀 Future Enhancements
 - **Personalized interview feedback**
-- **Only Two types of interview category** (Tech, Behavioral, etc.)
+- **Only Two types of interview category** (Tech, Behavioral)
 - **Speech-to-text support** for real-time voice interaction
 
 ## 🤝 Contributions & Feedback
-I’d love to hear your thoughts and suggestions! Feel free to open issues, contribute, or reach out to me on [https://www.linkedin.com/in/vineetkatiyar98](#).
+I’d love to hear your thoughts and suggestions! Feel free to open issues, contribute, or reach out to me on [linkedin](https://www.linkedin.com/in/vineetkatiyar98).
 
 ---
 
-📌 **Developed by:** [Vineet Katiyar](#)  
-📩 **Contact:** [vineetkatiyar98@gmail.com](#)  
-🌐 **Portfolio:** [https://portfolio-vineetkatiyar.vercel.app](#)
+📌 **Developed by:** [Vineet Katiyar]  
+📩 **Contact:** [gmail](vineetkatiyar98@gmail.com)  
+🌐 **Portfolio:** [Portfolio](https://portfolio-phhat371q-vineetkatiyar98s-projects.vercel.app)
 
 #AI #MockInterview #NextJS #Firebase #VapiAI #GoogleGemini
