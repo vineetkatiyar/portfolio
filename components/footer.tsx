@@ -72,7 +72,7 @@ export default function Footer() {
           </div>
           <div className='order-3 mt-8'>
             <p className='text-center text-xs leading-5 text-muted-foreground'>
-              &copy; {new Date().getFullYear()} Your Company. All rights
+              &copy; {new Date().getFullYear()} Vineet Katiyar. All rights
               reserved.
             </p>
           </div>
