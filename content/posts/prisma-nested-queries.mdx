@@ -1,0 +1,180 @@
+---
+  title: Nested Queries in prisma
+  summary: A nested query allows you to read from, write to, or manipulate related models (relations) inside a single Prisma query.
+  author: 'Vineet Katiyar'
+  publishedAt: '2025-05-11'
+---
+## Prisma Nested Queries
+
+### A nested query allows you to read from, write to, or manipulate related models (relations) inside a single Prisma query.
+
+- These are the main Nested Queries
+  - Nested Read (include, select)
+  - Nested Create
+  - Nested Update
+  - Nested Connect / Disconnect / Delete
+  - Nested Upsert
+
+1. ### Nested Read (include, select)
+   **A query that fetches data from a model along with its related models using include or select.**
+
+```js
+const usersWithPosts = await prisma.user.findMany({
+  include: {
+    posts: true,
+  },
+});
+```
+
+- Explanation:
+  - Fetches all users.
+  - Each user includes their related posts.
+
+---
+
+2. ### Nested Create
+   **Create a record in one model and simultaneously create related records in another model.**
+
+```js
+const user = await prisma.user.create({
+  data: {
+    name: "Ravi",
+    email: "ravi@example.com",
+    posts: {
+      create: [
+        { title: "First Post", content: "Hello world" },
+        { title: "Second Post", content: "Nested write is cool!" },
+      ],
+    },
+  },
+});
+```
+
+- Explanation:
+  - Creates a new user.
+  - Also creates two posts related to this user — in one query.
+
+---
+
+3. ### Nested UPDATE
+   **Update a record and also update related records in one query.**
+
+```js
+const updatedUser = await prisma.user.update({
+  where: { id: "user-id" },
+  data: {
+    name: "Updated Ravi",
+    posts: {
+      update: {
+        where: { id: "post-id" },
+        data: { title: "Updated Post Title" },
+      },
+    },
+  },
+});
+```
+
+- Explanation
+  - Updates the user’s name.
+  - Also updates a related post’s title.
+
+---
+
+4. ### Nested Upsert
+   **If related record exists, update it; otherwise, create it.**
+
+```js
+await prisma.user.update({
+  where: { id: "user-id" },
+  data: {
+    posts: {
+      upsert: {
+        where: { id: "post-id" },
+        update: { title: "Updated Title" },
+        create: { title: "New Title", content: "New Content" },
+      },
+    },
+  },
+});
+```
+
+- Explanation:
+  - Checks if a post exists.
+  - If it does: update title.
+  - If it doesn’t: create a new one.
+
+---
+
+5. ### Nested Connect / Disconnect / Delete
+
+```js
+model User {
+  id    String  @id @default(uuid())
+  name  String
+  posts Post[]
+}
+
+model Post {
+  id       String  @id @default(uuid())
+  title    String
+  content  String?
+  author   User?   @relation(fields: [authorId], references: [id])
+  authorId String?
+}
+```
+
+- ### connect: Link an existing record
+   **You already have a User and a Post. You want to associate that post to the user.**
+
+```js
+await prisma.post.update({
+  where: { id: "post-id-123" },
+  data: {
+    author: {
+      connect: { id: "user-id-abc" },
+    },
+  },
+});
+```
+
+- What it does:
+  - Finds the user with id = user-id-abc
+  - Sets the authorId of this post to user-id-abc
+---
+
+- ### disconnect: Unlink the relationship, keep both records
+**You want to remove the link between a post and its author, but don’t delete either.**
+
+```js
+await prisma.post.update({
+  where: { id: "post-id-123" },
+  data: {
+    author: {
+      disconnect: true,
+    },
+  },
+});
+```
+- What it does:
+    - Sets authorId = null on the Post (if allowed — needs relation to be optional).
+    - The User and Post remain in the database.
+    - ❗ IMPORTANT: authorId must be optional (String?) in your schema to allow disconnect.
+
+- ### delete: Remove the related record entirely
+**You want to delete the post related to a user.**
+```js
+await prisma.user.update({
+  where: { id: "user-id-abc" },
+  data: {
+    posts: {
+      delete: {
+        id: "post-id-123",
+      },
+    },
+  },
+});
+```
+
+- What it does:
+    - Deletes the Post with ID post-id-123 that belongs to this user.
+    - Will fail if post doesn’t belong to this user.
