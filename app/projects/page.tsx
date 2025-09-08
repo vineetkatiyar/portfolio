@@ -5,7 +5,7 @@ export default async function ProjectsPage() {
   const projects = await getProjects()
 
   return (
-    <section className='pt-40'>
+    <section className='pt-28'>
       <div className='container max-w-3xl'>
         <h1 className='title mb-12'>Projects</h1>
 

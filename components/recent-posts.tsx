@@ -11,12 +11,13 @@ export default async function RecentPosts() {
         <h2 className='title mb-12'>Recent posts</h2>
         <Posts posts={posts} />
 
-        <Link
-          href='/posts'
-          className='mt-8 inline-flex items-center gap-2 text-muted-foreground underline decoration-1 underline-offset-2 transition-colors hover:text-foreground'
-        >
-          <span>All posts</span>
-        </Link>
+       <Link
+  href='/posts'
+  className='mt-8 inline-flex items-center gap-2 text-muted-foreground underline decoration-gray-400 underline-offset-2 transition-colors hover:text-cyan-700 hover:decoration-cyan-700'
+>
+  <span>All posts</span>
+</Link>
+
       </div>
     </section>
   )

@@ -1,0 +1,149 @@
+---
+  title: Tanstack Querie Keys Concept
+  summary: ####
+  author: 'Vineet Katiyar'
+  publishedAt: '2025-09-08'
+---
+
+# What are Query Keys?
+
+### Query keys are unique identifiers for your queries. They tell React Query: What data you're querying
+
+## How to cache and retrieve that data
+
+- When to refetch data Why Separate Query Keys are Important Without proper
+  keys:
+
+```jsx
+// ❌ Problem: All books share the same cache
+useQuery('books', fetchBooks)
+useQuery('books', fetchDifferentBooks) // Overwrites previous cache!
+```
+
+- With proper keys:
+
+```jsx
+// ✅ Solution: Separate cache for different data
+useQuery(['books', 'fiction'], fetchFictionBooks)
+useQuery(['books', 'non-fiction'], fetchNonFictionBooks) // Different cache!
+```
+
+## Query Key Patterns
+
+1. Simple Keys:
+
+```js
+;['books'] // Basic list of books
+```
+
+2. Parameter-based Keys:
+
+```js
+;['book', bookId][('books', { genre: 'fiction', page: 1 })] // Specific book by ID // Filtered list
+```
+
+3. Nested Keys:
+
+```js
+;['user', userId, 'books', { status: 'reading' }] // User's reading books
+```
+
+## Why Key Separation Matters Cache Isolation:
+
+```js
+// Different keys = Different cache entries
+useQuery(['books', 'fiction'], fetchFictionBooks) // Cache 1
+useQuery(['books', 'non-fiction'], fetchNonFictionBooks) // Cache 2
+useQuery(['book', 123], fetchBook) // Cache 3
+```
+
+- Targeted Cache Updates:
+
+```js
+// Update only fiction books cache
+queryClient.invalidateQueries({ queryKey: ['books', 'fiction'] })
+// Update all book-related queries
+queryClient.invalidateQueries({ queryKey: ['books'] })
+// Update specific book
+queryClient.invalidateQueries({ queryKey: ['book', bookId] })
+```
+
+## What is StaleTime?
+
+### StaleTime determines how long data is considered "fresh" before it becomes "stale."
+
+```js
+useQuery({
+  queryKey: ['books'],
+  queryFn: fetchBooks,
+  staleTime: 5 * 60 * 1000 // 5 minutes
+})
+```
+
+### StaleTime Behavior
+
+- Fresh Data (0 to 5 minutes):
+
+```js
+// ✅ Same component re-renders: Uses cached data (no API call)
+// ✅ Different component mounts: Uses cached data (no API call)
+// ✅ Window refocus: No refetch
+```
+
+- Stale Data (After 5 minutes):
+```js
+// ✅ Same component re-renders: Uses cached data BUT triggers background refetch
+// ✅ Different component mounts: Uses cached data BUT triggers background refetch
+// ✅ Window refocus: Triggers refetch
+```
+
+## 🏗️ Complete Example with Proper Keys and StaleTime
+```jsx
+// API functions
+export const getBooks = async (filters = {}) => {
+  const response = await axios.get('/books', { params: filters });
+  return response.data;
+};
+
+export const getBook = async (id) => {
+  const response = await axios.get(`/books/${id}`);
+  return response.data;
+};
+
+// Custom hooks with proper keys and staleTime
+export const useBooks = (filters = {}) => {
+  return useQuery({
+    queryKey: ['books', filters], // Unique key for this query
+    queryFn: () => getBooks(filters),
+    staleTime: 2 * 60 * 1000, // 2 minutes stale time
+  });
+};
+
+export const useBook = (id) => {
+  return useQuery({
+    queryKey: ['book', id], // Unique key for specific book
+    queryFn: () => getBook(id),
+    staleTime: 5 * 60 * 1000, // 5 minutes stale time
+    enabled: !!id, // Only run if ID exists
+  });
+};
+
+// Usage in components
+const FictionBooks = () => {
+  const { data: books, isLoading } = useBooks({ genre: 'fiction' });
+  // Query key: ['books', { genre: 'fiction' }]
+  // Different cache than non-fiction books
+};
+
+const NonFictionBooks = () => {
+  const { data: books, isLoading } = useBooks({ genre: 'non-fiction' });
+  // Query key: ['books', { genre: 'non-fiction' }]
+  // Different cache than fiction books
+};
+
+const BookDetail = ({ bookId }) => {
+  const { data: book, isLoading } = useBook(bookId);
+  // Query key: ['book', bookId]
+  // Unique cache for this specific book
+};
+```

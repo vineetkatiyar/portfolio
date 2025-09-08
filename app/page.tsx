@@ -6,7 +6,7 @@ import Skills from '@/components/skills'
 
 export default function Home() {
   return (
-    <section className='pt-40 pb-16'>
+    <section className='pt-28 pb-10'>
       <div className='container max-w-3xl'>
         <Intro />
         <Skills />
