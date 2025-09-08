@@ -18,15 +18,25 @@ export async function sendEmail(data: ContactFormInputs) {
 
   try {
     const { name, email, message } = result.data
-    const { data, error } = await resend.emails.send({
+    
+    // If you need to fetch data for the email, do it here
+    // const someData = await fetchSomeData();
+    
+    const { data: emailData, error } = await resend.emails.send({
       from: 'Contact Form <onboarding@resend.dev>',
       to: 'vineetkatiyar98@gmail.com',
       subject: 'Contact form submission',
       text: `Name: ${name}\nEmail: ${email}\nMessage: ${message}`,
-      react: ContactFormEmail({ name, email, message })
+      react: await ContactFormEmail({ 
+        name, 
+        email, 
+        message,
+        // Pass any async data as props
+        // someData: someData
+      })
     })
 
-    if (!data || error) {
+    if (!emailData || error) {
       throw new Error('Failed to send email')
     }
 

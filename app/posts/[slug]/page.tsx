@@ -14,8 +14,10 @@ export async function generateStaticParams() {
   return slugs
 }
 
-export default async function Post({ params }: { params: { slug: string } }) {
-  const { slug } = params
+// Update the props interface to use Awaited
+export default async function Post({ params }: { params: Promise<{ slug: string }> }) {
+  // Await the params
+  const { slug } = await params
   const post = await getPostBySlug(slug)
 
   if (!post) {
