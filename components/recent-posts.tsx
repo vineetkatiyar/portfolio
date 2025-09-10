@@ -8,16 +8,15 @@ export default async function RecentPosts() {
   return (
     <section className='pb-24'>
       <div>
-        <h2 className='title mb-12'>Recent posts</h2>
+        <h2 className='title mb-12 text-cyan-700'>Recent posts</h2>
         <Posts posts={posts} />
 
-       <Link
-  href='/posts'
-  className='mt-8 inline-flex items-center gap-2 text-muted-foreground underline decoration-gray-400 underline-offset-2 transition-colors hover:text-cyan-700 hover:decoration-cyan-700'
->
-  <span>All posts</span>
-</Link>
-
+        <Link
+          href='/posts'
+          className='mt-8 inline-flex items-center gap-2 text-muted-foreground underline decoration-gray-400 underline-offset-2 transition-colors hover:text-cyan-700 hover:decoration-cyan-700'
+        >
+          <span>All posts</span>
+        </Link>
       </div>
     </section>
   )

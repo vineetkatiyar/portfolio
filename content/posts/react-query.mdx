@@ -1,0 +1,223 @@
+---
+  title: Tanstack Querie Basic Use
+  summary: ####
+  author: 'Vineet Katiyar'
+  publishedAt: '2025-09-08'
+---
+
+## The Best Way to Use React Query (TanStack Query)
+
+React Query is a powerful data-fetching library that simplifies server state management in React applications. Here's a comprehensive guide on the best practices and patterns for using React Query effectively.
+
+1. Project Structure and Setup
+
+* Optimal Project Structure
+```js
+src/
+├── api/          # API service functions
+├── hooks/        # Custom React Query hooks
+├── components/   # React components
+└── utils/        # Utility functions
+```
+
+### Setup QueryClient
+```js
+// src/index.js or App.js
+import React from 'react';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
+
+// Create a client with default options
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      staleTime: 5 * 60 * 1000, // 5 minutes
+      cacheTime: 10 * 60 * 1000, // 10 minutes
+      retry: 1,
+      refetchOnWindowFocus: false,
+    },
+  },
+});
+
+function App() {
+  return (
+    <QueryClientProvider client={queryClient}>
+      {/* Your app components */}
+      <ReactQueryDevtools initialIsOpen={false} />
+    </QueryClientProvider>
+  );
+}
+
+export default App;
+```
+
+### 📡 2. API Layer Abstraction
+```js
+// src/api/bookApi.js
+import axios from 'axios';
+
+const API_BASE_URL = 'https://backend-crud-mern.onrender.com';
+
+const api = axios.create({
+  baseURL: API_BASE_URL,
+  timeout: 10000,
+});
+
+// Request interceptor for adding auth tokens if needed
+api.interceptors.request.use(
+  (config) => {
+    // const token = localStorage.getItem('token');
+    // if (token) {
+    //   config.headers.Authorization = `Bearer ${token}`;
+    // }
+    return config;
+  },
+  (error) => Promise.reject(error)
+);
+
+// Response interceptor for handling errors
+api.interceptors.response.use(
+  (response) => response,
+  (error) => {
+    if (error.response?.status === 401) {
+      // Handle unauthorized access
+    }
+    return Promise.reject(error);
+  }
+);
+
+// API functions
+export const getBooks = async () => {
+  const response = await api.get('/books');
+  return response.data;
+};
+
+export const getBook = async (id) => {
+  const response = await api.get(`/books/${id}`);
+  return response.data;
+};
+
+export const createBook = async (bookData) => {
+  const response = await api.post('/books', bookData);
+  return response.data;
+};
+
+export const updateBook = async ({ id, ...bookData }) => {
+  const response = await api.put(`/books/${id}`, bookData);
+  return response.data;
+};
+
+export const deleteBook = async (id) => {
+  const response = await api.delete(`/books/${id}`);
+  return response.data;
+};
+```
+
+### 🎣 3. Custom Query Hooks
+```js
+// src/hooks/useBooks.js
+import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
+import { getBooks, getBook, createBook, updateBook, deleteBook } from '../api/bookApi';
+
+// Query keys as constants for consistency
+export const BOOK_KEYS = {
+  all: ['books'],
+  lists: () => [...BOOK_KEYS.all, 'list'],
+  list: (filters) => [...BOOK_KEYS.lists(), { filters }],
+  details: () => [...BOOK_KEYS.all, 'detail'],
+  detail: (id) => [...BOOK_KEYS.details(), id],
+};
+
+// Hook to get all books
+export const useBooks = (filters = {}) => {
+  return useQuery({
+    queryKey: BOOK_KEYS.list(filters),
+    queryFn: () => getBooks(filters),
+    // Optional: only run query if certain conditions are met
+    enabled: !!filters.genre, // Example condition
+  });
+};
+
+// Hook to get a single book
+export const useBook = (id) => {
+  return useQuery({
+    queryKey: BOOK_KEYS.detail(id),
+    queryFn: () => getBook(id),
+    enabled: !!id, // Only run if id exists
+  });
+};
+
+// Hook to create a book
+export const useCreateBook = () => {
+  const queryClient = useQueryClient();
+  
+  return useMutation({
+    mutationFn: createBook,
+    onSuccess: (newBook) => {
+      // Invalidate all books queries
+      queryClient.invalidateQueries({ queryKey: BOOK_KEYS.all });
+      
+      // Alternatively, update the cache directly for optimistic updates
+      // queryClient.setQueryData(BOOK_KEYS.lists(), (old) => [...old, newBook]);
+    },
+    onError: (error) => {
+      // Handle error (e.g., show notification)
+      console.error('Error creating book:', error);
+    },
+  });
+};
+
+// Hook to update a book
+export const useUpdateBook = () => {
+  const queryClient = useQueryClient();
+  
+  return useMutation({
+    mutationFn: updateBook,
+    onSuccess: (updatedBook) => {
+      // Update specific book in cache
+      queryClient.setQueryData(BOOK_KEYS.detail(updatedBook.id), updatedBook);
+      
+      // Invalidate lists to reflect changes
+      queryClient.invalidateQueries({ queryKey: BOOK_KEYS.lists() });
+    },
+    // Optional: Optimistic updates
+    onMutate: async (updatedBook) => {
+      // Cancel any outgoing refetches
+      await queryClient.cancelQueries({ queryKey: BOOK_KEYS.detail(updatedBook.id) });
+      
+      // Snapshot the previous value
+      const previousBook = queryClient.getQueryData(BOOK_KEYS.detail(updatedBook.id));
+      
+      // Optimistically update to the new value
+      queryClient.setQueryData(BOOK_KEYS.detail(updatedBook.id), updatedBook);
+      
+      // Return a context object with the snapshotted value
+      return { previousBook };
+    },
+    onError: (err, updatedBook, context) => {
+      // Rollback on error
+      queryClient.setQueryData(
+        BOOK_KEYS.detail(updatedBook.id),
+        context.previousBook
+      );
+    },
+  });
+};
+
+// Hook to delete a book
+export const useDeleteBook = () => {
+  const queryClient = useQueryClient();
+  
+  return useMutation({
+    mutationFn: deleteBook,
+    onSuccess: (_, deletedId) => {
+      // Remove from cache
+      queryClient.removeQueries({ queryKey: BOOK_KEYS.detail(deletedId) });
+      
+      // Invalidate lists
+      queryClient.invalidateQueries({ queryKey: BOOK_KEYS.lists() });
+    },
+  });
+};
+```
+

@@ -28,7 +28,7 @@ export default async function Post({ params }: { params: Promise<{ slug: string 
   const { title, image, author, publishedAt } = metadata
 
   return (
-    <section className='pb-24 pt-32'>
+    <section className='pb-24 pt-28'>
       <div className='container max-w-3xl'>
         <Link
           href='/posts'
