@@ -40,7 +40,7 @@ const navigation = [
 
 export default function Footer() {
   return (
-    <footer className='py-8'>
+    <footer className='pb-8'>
       <div className='container max-w-3xl'>
         <div className='flex flex-col space-y-8'>
           <div className='order-1 mt-8'>

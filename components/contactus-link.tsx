@@ -1,0 +1,42 @@
+'use client'
+
+import Link from 'next/link'
+
+export default function ContactSection() {
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' })
+  }
+
+  return (
+    <section className="w-full mt-10 py-10 bg-gradient-to-b from-gray-200 to-black dark:bg-gradient-to-b dark:from-black dark:to-gray-400 rounded-lg">
+      <div className="container mx-auto md:px-6 px-4">
+        {/* First line */}
+        <h2 className="text-2xl md:text-3xl font-bold mb-4  dark:text-white text-white">
+          Let&apos;s talk about your project
+        </h2>
+        
+        {/* Second line */}
+        <p className="text-sm md:text-base mb-5 text-gray-400  max-w-2xl mx-auto">
+          We help companies and individuals build out their digital presence.
+        </p>
+        
+        {/* Third line with button and link */}
+        <div className="flex flex-col sm:flex-row gap-6">
+          <Link 
+            href="/contact"
+            className="px-6 py-3 bg-black text-white dark:bg-white dark:text-black rounded-md font-medium hover:opacity-90 transition-opacity"
+          >
+            Let&apos;s talk
+          </Link>
+          
+          <button
+            onClick={scrollToTop}
+            className="text-white font-medium flex items-center justify-center gap-1 hover:underline"
+          >
+            Learn more →
+          </button>
+        </div>
+      </div>
+    </section>
+  )
+}

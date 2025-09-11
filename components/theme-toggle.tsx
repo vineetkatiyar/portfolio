@@ -4,7 +4,8 @@ import { useEffect, useState } from 'react'
 import { useTheme } from 'next-themes'
 
 import { Button } from '@/components/ui/button'
-import { Moon, Sun } from 'lucide-react'
+import { IoMdMoon } from 'react-icons/io'
+import { IoSunnySharp } from 'react-icons/io5'
 
 export function ThemeToggle() {
   const { setTheme, resolvedTheme } = useTheme()
@@ -27,9 +28,9 @@ export function ThemeToggle() {
       }}
     >
       {resolvedTheme === 'dark' ? (
-        <Sun color='#ffffff' className='size-4 text-white' />
+        <IoSunnySharp color='#ffffff' className='size-4 text-white' />
       ) : (
-        <Moon color='#000000' className='size-4 text-black' />
+        <IoMdMoon color='#000000' className='size-4 text-black' />
       )}
 
       <span className='sr-only'>Toggle theme</span>

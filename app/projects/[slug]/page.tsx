@@ -6,6 +6,7 @@ import MDXContent from '@/components/mdx-content'
 import { ArrowLeftIcon } from '@radix-ui/react-icons'
 import { getProjectBySlug, getProjects } from '@/lib/projects'
 import { notFound } from 'next/navigation'
+import ContactSection from '@/components/contactus-link'
 
 export async function generateStaticParams() {
   const projects = await getProjects()
@@ -62,6 +63,7 @@ export default async function Project({
         <main className='prose mt-16 dark:prose-invert'>
           <MDXContent source={content} />
         </main>
+        <ContactSection/>
       </div>
     </section>
   )
