@@ -1,7 +1,4 @@
 /** @type {import('next').NextConfig} */
-const nextConfig = {
-  // Remove the optimizeCss experimental feature
-  // Next.js 15 has built-in CSS optimization
-};
+const nextConfig = {};
 
 export default nextConfig;
