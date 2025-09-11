@@ -43,7 +43,7 @@ export default function ContactForm() {
   return (
     <section className=''>
       <div className='container max-w-3xl space-y-10'>
-        <h2 className='title text-cyan-700'>Let&#39;s talk</h2>
+        <h2 className='title'>Let&#39;s talk</h2>
         <section className='relative isolate'>
           {/* Background pattern */}
           <svg
@@ -141,7 +141,7 @@ export default function ContactForm() {
                 <Button
                   type='submit'
                   disabled={isSubmitting}
-                  className='w-full disabled:opacity-50 bg-cyan-700'
+                  className='w-full disabled:opacity-50'
                 >
                   {isSubmitting ? 'Submitting...' : 'Contact Us'}
                 </Button>

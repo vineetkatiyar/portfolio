@@ -43,24 +43,24 @@ export const versionControl = ['Git', 'GitHub'] as const
 
 // Map skills to icons
 const skillIcons: Record<string, React.ReactElement> = {
-  HTML: <SiHtml5 className='text-orange-500' />,
-  CSS: <SiCss3 className='text-blue-500' />,
-  JavaScript: <SiJavascript className='text-yellow-500' />,
-  TypeScript: <SiTypescript className='text-blue-600' />,
-  React: <SiReact className='text-cyan-500' />,
+  HTML: <SiHtml5 className='text-black dark:text-white' />,
+  CSS: <SiCss3 className='text-black dark:text-white' />,
+  JavaScript: <SiJavascript className='text-black dark:text-white' />,
+  TypeScript: <SiTypescript className='text-black dark:text-white' />,
+  React: <SiReact className='text-black dark:text-white' />,
   'Next.js': <SiNextdotjs className='text-black dark:text-white' />,
-  Tailwind: <SiTailwindcss className='text-cyan-400' />,
-  Zustand: <RiBearSmileFill className='text-amber-600' />,
-  'React Query': <TbApi className='text-red-500' />,
-  'Redux Toolkit': <SiRedux className='text-purple-500' />,
-  'Node.js': <SiNodedotjs className='text-green-600' />,
-  Prisma: <SiPrisma className='text-blue-800 dark:text-blue-300' />,
-  Express: <SiExpress className='text-gray-800 dark:text-gray-200' />,
-  Mongoose: <MongooseIcon className='text-red-600' />,
-  PostgreSQL: <SiPostgresql className='text-blue-700' />,
-  MongoDB: <SiMongodb className='text-green-700' />,
-  MySQL: <SiMysql className='text-blue-600' />,
-  Git: <SiGit className='text-orange-600' />,
+  Tailwind: <SiTailwindcss className='text-black dark:text-white' />,
+  Zustand: <RiBearSmileFill className='text-black dark:text-white' />,
+  'React Query': <TbApi className='text-black dark:text-white' />,
+  'Redux Toolkit': <SiRedux className='text-black dark:text-white' />,
+  'Node.js': <SiNodedotjs className='text-black dark:text-white' />,
+  Prisma: <SiPrisma className='text-black dark:text-white' />,
+  Express: <SiExpress className='text-black dark:text-white' />,
+  Mongoose: <MongooseIcon className='text-black dark:text-white' />,
+  PostgreSQL: <SiPostgresql className='text-black dark:text-white' />,
+  MongoDB: <SiMongodb className='text-black dark:text-white' />,
+  MySQL: <SiMysql className='text-black dark:text-white' />,
+  Git: <SiGit className='text-black dark:text-white' />,
   GitHub: <SiGithub className='text-black dark:text-white' />
 }
 
@@ -74,15 +74,15 @@ export default function Skills() {
 
   return (
     <section id='skills' className='pb-16'>
-      <h2 className='title mb-12 font-bold text-cyan-700'>My Skills</h2>
+      <h2 className='title mb-12 font-bold text-black dark:text-white'>My Skills</h2>
 
       <div className='grid gap-8'>
         {skillCategories.map((category, categoryIndex) => (
           <div
             key={categoryIndex}
-            className='rounded-xl border border-gray-200 bg-white p-6 shadow-sm transition-all dark:border-gray-800 dark:bg-gray-900'
+            className='rounded-xl border-2 border-gray-500 dark:border-white/50 p-6 bg-white dark:bg-black'
           >
-            <h3 className='mb-6 text-xl font-semibold text-gray-800 dark:text-white'>
+            <h3 className='mb-6 text-xl font-semibold text-black dark:text-white'>
               {category.title}
             </h3>
 
@@ -90,12 +90,12 @@ export default function Skills() {
               {category.skills.map((skill, index) => (
                 <div
                   key={index}
-                  className='flex flex-col items-center justify-center rounded-xl border border-gray-200 bg-gray-50 py-2 transition-all hover:scale-105 hover:shadow-md dark:border-gray-700 dark:bg-gray-800'
+                  className='flex flex-col items-center justify-center rounded-xl border border-gray-500 dark:border-white/50 py-2 transition-all hover:scale-105 bg-white dark:bg-black'
                 >
                   <div className='mb-2 text-2xl'>
-                    {skillIcons[skill] || <TbApi />}
+                    {skillIcons[skill] || <TbApi className='text-black dark:text-white' />}
                   </div>
-                  <span className='text-sm font-medium text-gray-700 dark:text-gray-300'>
+                  <span className='text-sm font-medium text-black dark:text-white'>
                     {skill}
                   </span>
                 </div>
