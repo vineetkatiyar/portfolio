@@ -8,7 +8,7 @@ export default async function RecentProjects() {
   return (
     <section className='pb-24'>
       <div>
-        <h2 className='title mb-12 '>Recent projects</h2>
+        <h2 className='title mb-12 text-2xl md:text-3xl font-bold'>Recent projects</h2>
         <Projects projects={projects} />
 
         <Link

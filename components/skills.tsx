@@ -74,7 +74,7 @@ export default function Skills() {
 
   return (
     <section id='skills' className='pb-16'>
-      <h2 className='title mb-12 font-bold text-black dark:text-white'>My Skills</h2>
+      <h2 className='title text-2xl md:text-3xl mb-12 font-bold text-black dark:text-white'>My Skills</h2>
 
       <div className='grid gap-8'>
         {skillCategories.map((category, categoryIndex) => (
