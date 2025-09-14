@@ -11,7 +11,7 @@ export default function ContactSection() {
     <section className="w-full mt-10 py-5 rounded-lg border bg-card">
       <div className="container mx-auto md:px-6 px-4">
         {/* First line */}
-        <h2 className="text-2xl md:text-3xl font-bold mb-4 text-foreground">
+        <h2 className="text-xl md:text-2xl font-bold mb-4 text-foreground">
           Let&apos;s talk about your project
         </h2>
         
@@ -21,10 +21,10 @@ export default function ContactSection() {
         </p>
         
         {/* Third line with button and link */}
-        <div className="flex flex-col sm:flex-row gap-6">
+        <div className="flex gap-6">
           <Link 
             href="/contact"
-            className="px-6 py-3 bg-primary text-primary-foreground rounded-md font-medium hover:opacity-90 transition-opacity"
+            className="px-6 py-2 bg-primary text-primary-foreground rounded-md font-medium hover:opacity-90 transition-opacity"
           >
             Let&apos;s talk
           </Link>
