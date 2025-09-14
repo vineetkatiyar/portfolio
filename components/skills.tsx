@@ -43,25 +43,25 @@ export const versionControl = ['Git', 'GitHub'] as const
 
 // Map skills to icons
 const skillIcons: Record<string, React.ReactElement> = {
-  HTML: <SiHtml5 className='text-black dark:text-white' />,
-  CSS: <SiCss3 className='text-black dark:text-white' />,
-  JavaScript: <SiJavascript className='text-black dark:text-white' />,
-  TypeScript: <SiTypescript className='text-black dark:text-white' />,
-  React: <SiReact className='text-black dark:text-white' />,
-  'Next.js': <SiNextdotjs className='text-black dark:text-white' />,
-  Tailwind: <SiTailwindcss className='text-black dark:text-white' />,
-  Zustand: <RiBearSmileFill className='text-black dark:text-white' />,
-  'React Query': <TbApi className='text-black dark:text-white' />,
-  'Redux Toolkit': <SiRedux className='text-black dark:text-white' />,
-  'Node.js': <SiNodedotjs className='text-black dark:text-white' />,
-  Prisma: <SiPrisma className='text-black dark:text-white' />,
-  Express: <SiExpress className='text-black dark:text-white' />,
-  Mongoose: <MongooseIcon className='text-black dark:text-white' />,
-  PostgreSQL: <SiPostgresql className='text-black dark:text-white' />,
-  MongoDB: <SiMongodb className='text-black dark:text-white' />,
-  MySQL: <SiMysql className='text-black dark:text-white' />,
-  Git: <SiGit className='text-black dark:text-white' />,
-  GitHub: <SiGithub className='text-black dark:text-white' />
+  HTML: <SiHtml5 className='text-foreground' />,
+  CSS: <SiCss3 className='text-foreground' />,
+  JavaScript: <SiJavascript className='text-foreground' />,
+  TypeScript: <SiTypescript className='text-foreground' />,
+  React: <SiReact className='text-foreground' />,
+  'Next.js': <SiNextdotjs className='text-foreground' />,
+  Tailwind: <SiTailwindcss className='text-foreground' />,
+  Zustand: <RiBearSmileFill className='text-foreground' />,
+  'React Query': <TbApi className='text-foreground' />,
+  'Redux Toolkit': <SiRedux className='text-foreground' />,
+  'Node.js': <SiNodedotjs className='text-foreground' />,
+  Prisma: <SiPrisma className='text-foreground' />,
+  Express: <SiExpress className='text-foreground' />,
+  Mongoose: <MongooseIcon className='text-foreground' />,
+  PostgreSQL: <SiPostgresql className='text-foreground' />,
+  MongoDB: <SiMongodb className='text-foreground' />,
+  MySQL: <SiMysql className='text-foreground' />,
+  Git: <SiGit className='text-foreground' />,
+  GitHub: <SiGithub className='text-foreground' />
 }
 
 export default function Skills() {
@@ -74,15 +74,15 @@ export default function Skills() {
 
   return (
     <section id='skills' className='pb-16'>
-      <h2 className='title text-2xl md:text-3xl mb-12 font-bold text-black dark:text-white'>My Skills</h2>
+      <h2 className='title text-2xl md:text-3xl mb-12 font-bold text-foreground'>My Skills</h2>
 
       <div className='grid gap-8'>
         {skillCategories.map((category, categoryIndex) => (
           <div
             key={categoryIndex}
-            className='rounded-xl border-2 border-gray-500 dark:border-white/50 p-6 bg-white dark:bg-black'
+            className='rounded-lg border p-6 bg-card'
           >
-            <h3 className='mb-6 text-xl font-semibold text-black dark:text-white'>
+            <h3 className='mb-6 text-xl font-semibold text-foreground'>
               {category.title}
             </h3>
 
@@ -90,12 +90,12 @@ export default function Skills() {
               {category.skills.map((skill, index) => (
                 <div
                   key={index}
-                  className='flex flex-col items-center justify-center rounded-xl border border-gray-500 dark:border-white/50 py-2 transition-all hover:scale-105 bg-white dark:bg-black'
+                  className='flex flex-col items-center justify-center rounded-lg border py-2 transition-all hover:scale-105 bg-card'
                 >
                   <div className='mb-2 text-2xl'>
-                    {skillIcons[skill] || <TbApi className='text-black dark:text-white' />}
+                    {skillIcons[skill] || <TbApi className='text-foreground' />}
                   </div>
-                  <span className='text-sm font-medium text-black dark:text-white'>
+                  <span className='text-sm font-medium text-foreground'>
                     {skill}
                   </span>
                 </div>

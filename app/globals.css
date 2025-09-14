@@ -42,25 +42,26 @@
   }
 
   .dark {
-    --background: 240 10% 3.9%;
-    --foreground: 0 0% 98%;
-    --card: 240 10% 3.9%;
-    --card-foreground: 0 0% 98%;
-    --popover: 240 10% 3.9%;
-    --popover-foreground: 0 0% 98%;
-    --primary: 0 0% 98%;
-    --primary-foreground: 240 5.9% 10%;
-    --secondary: 240 3.7% 15.9%;
-    --secondary-foreground: 0 0% 98%;
-    --muted: 240 3.7% 15.9%;
-    --muted-foreground: 240 5% 64.9%;
-    --accent: 240 3.7% 15.9%;
-    --accent-foreground: 0 0% 98%;
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 0 0% 98%;
-    --border: 240 3.7% 15.9%;
-    --input: 240 3.7% 15.9%;
-    --ring: 240 4.9% 83.9%;
+    /* Convert #20232A to HSL: 222° 14% 14% */
+    --background: 222 14% 14%;
+    --foreground: 0 0% 95%;
+    --card: 222 14% 18%;
+    --card-foreground: 0 0% 95%;
+    --popover: 222 14% 18%;
+    --popover-foreground: 0 0% 95%;
+    --primary: 210 40% 98%;
+    --primary-foreground: 222 14% 14%;
+    --secondary: 222 14% 22%;
+    --secondary-foreground: 210 40% 98%;
+    --muted: 222 14% 22%;
+    --muted-foreground: 222 10% 65%;
+    --accent: 222 14% 22%;
+    --accent-foreground: 210 40% 98%;
+    --destructive: 0 62.8% 50%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 222 14% 22%;
+    --input: 222 14% 22%;
+    --ring: 222 20% 80%;
     --chart-1: 220 70% 50%;
     --chart-2: 160 60% 45%;
     --chart-3: 30 80% 55%;
@@ -68,7 +69,7 @@
     --chart-5: 340 75% 55%;
 
     --sh-class: #4c97f8;
-    --sh-identifier: white;
+    --sh-identifier: #e2e8f0;
     --sh-keyword: #f47067;
     --sh-string: #0fa295;
   }

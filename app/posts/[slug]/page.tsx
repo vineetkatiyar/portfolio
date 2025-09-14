@@ -51,7 +51,7 @@ export default async function Post({ params }: { params: Promise<{ slug: string 
         )}
 
         <header>
-          <h1 className='title'>{title}</h1>
+          <h1 className='title md:text-3xl text-xl'>{title}</h1>
           <p className='mt-3 text-xs text-muted-foreground'>
             {author} / {formatDate(publishedAt ?? '')}
           </p>

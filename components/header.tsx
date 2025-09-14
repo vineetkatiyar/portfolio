@@ -19,6 +19,17 @@ export default function Header() {
     setIsOpen(false)
   }
 
+  // Function to handle resume download
+  const handleResumeDownload = () => {
+    // Create a link element
+    const link = document.createElement('a')
+    link.href = '/vineet_katiyar_fullStack_developer.pdf'
+    link.download = 'vineet_katiyar_Resume.pdf' // You can customize the downloaded filename
+    document.body.appendChild(link)
+    link.click()
+    document.body.removeChild(link)
+  }
+
   return (
     <header className='fixed inset-x-0 top-0 z-50 bg-background/75 py-6 backdrop-blur-sm'>
       <nav className='container flex max-w-3xl items-center justify-between'>
@@ -69,6 +80,12 @@ export default function Header() {
                   Contact
                 </Link>
               </DropdownMenuItem>
+              <DropdownMenuItem 
+                className='cursor-pointer hover:bg-accent focus:bg-accent md:hidden'
+                onClick={handleResumeDownload}
+              >
+                <span className='block w-full'>Resume</span>
+              </DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>
         </div>
@@ -95,7 +112,15 @@ export default function Header() {
           </li>
         </ul>
 
-        <div>
+        <div className='flex items-center gap-4'>
+          {/* Resume button for desktop */}
+          <button
+            onClick={handleResumeDownload}
+            className='hidden md:flex items-center px-4 py-1 rounded-md bg-primary text-primary-foreground hover:bg-primary/90 transition-colors'
+          >
+            Resume
+          </button>
+          
           <ThemeToggle />
         </div>
       </nav>
