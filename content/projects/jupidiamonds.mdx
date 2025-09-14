@@ -1,0 +1,173 @@
+---
+title: jupi diamonds - E Commerce platform for jewellery
+summary:
+  Jupidia Diamonds is a sophisticated e-commerce platform specializing in custom
+  jewelry, offering both ready-to-ship pieces and bespoke custom design
+  services. The platform provides a seamless shopping experience with advanced
+  filtering, detailed product specifications, and multiple payment options.
+image: /images/projects/jupi.png
+author: 'Vineet Katiyar'
+publishedAt: '2025-15-10'
+---
+
+## 💎 Jupidia Diamonds - Custom Jewelry E-Commerce Platform
+
+**Live Demo:** [JupidiaDiamonds.com](https://jupidiamonds.com)
+
+### Overview
+
+Jupidia Diamonds is a sophisticated e-commerce platform specializing in custom
+jewelry, offering both ready-to-ship pieces and bespoke custom design services.
+The platform provides a seamless shopping experience with advanced filtering,
+detailed product specifications, and multiple payment options.
+
+### Tech Stack
+
+- **Frontend:** React.js, Redux Toolkit, Context API, Tailwind CSS, React Hook
+  Form, zod
+- **Backend:** Node.js, Express.js
+- **Database and ORM:** Prisma and Postgresql
+- **Authentication:** session, bcryptjs
+- **Payment Gateways:** Razorpay, PayPal
+- **Image Storage:** AWS S3
+- **Admin Panel:** Custom-built with RBAC (Role-Based Access Control)
+
+### Client-Side Features
+
+#### Product Browsing & Detailed Specifications
+
+- **Comprehensive Jewelry Catalog**: Browse rings, necklaces, bracelets,
+  earrings, and more
+- **Detailed Product Specifications**:
+  - Center stones (count, type, carat weight)
+  - Accent stones (count, type, arrangement)
+  - Side stones (count, placement details)
+  - Metal type, purity, and weight
+  - Dimensions and measurements
+
+#### Advanced Filtering System
+
+- **Multi-dimensional Filters**:
+  - Jewelry Type (Ring, Necklace, Bracelet, etc.)
+  - Collection (Engagement, Wedding, Fashion, etc.)
+  - Occasion (Wedding, Anniversary, Birthday, etc.)
+  - Weight Range (in grams)
+  - Price Range
+  - Style (Vintage, Modern, Classic, etc.)
+  - Metal Color (Yellow Gold, White Gold, Rose Gold, Platinum)
+  - Stone Color (D-E-F, G-H, I-J, etc.)
+  - Stone Type (Diamond, Sapphire, Ruby, Emerald)
+
+#### Shopping Cart & Customization
+
+- **Size Selection**: Ring size options with international conversion
+- **Screw Options**: Customizable screw types for certain jewelry items
+- **Gift Cards & Coupons**: Apply discount codes and gift cards at checkout
+- **Save for Later**: Option to save items without purchasing immediately
+
+#### Custom Order Creation
+
+- **Custom Design Portal**: Users can submit their own jewelry designs
+- **Specification Form**: Detailed form for custom requirements
+- **Image Upload**: Ability to upload reference images or inspiration
+- **Direct Communication**: Admin contact via WhatsApp for custom orders
+- **Status Tracking**: Monitor custom order progress through dashboard
+
+#### Payment Processing
+
+- **Dual Payment Gateway Integration**:
+  - Razorpay (popular in India and surrounding regions)
+  - PayPal (global payment processing)
+- **Multiple Currency Support**: USD, INR, EUR, GBP, and more
+
+### Admin Panel Features
+
+#### Product Management
+
+- **Product Creation**: Add new jewelry items with detailed specifications
+- **Variant System**: Manage multiple variants of the same product
+  - Different sizes, metals, or stone options
+  - Inventory tracking for each variant
+  - Separate pricing for variants
+
+#### Automated Pricing System
+
+- **Making Charge Calculator**: Automated calculation based on:
+  - Metal type and current market rates
+  - Labor complexity and craftsmanship required
+  - Stone setting complexity
+  - Design intricacy
+- **Dynamic Pricing**: Real-time price updates based on material costs
+
+#### Marketing Tools
+
+- **Coupon Management**: Create and manage discount codes
+  - Percentage-based discounts
+  - Fixed amount discounts
+  - Limited-time offers
+  - Usage limits per customer
+- **Gift Card System**: Issue and track gift cards
+  - Purchase and redemption tracking
+  - Balance management
+  - Expiration date control
+
+#### User Management & RBAC
+
+- **Customer Management**: View and manage customer accounts
+- **Role-Based Access Control**:
+  - Super Admin: Full system access
+  - Content Manager: Product and content management
+  - Order Manager: Process orders and updates
+  - Support Staff: Customer communication and issue resolution
+- **Activity Logging**: Track all admin actions for security
+
+#### Order Processing System
+
+- **Order Dashboard**: View all orders with filter options
+- **Status Management**: Update order status (Pending, Processing, Shipped,
+  Delivered)
+- **Custom Order Workflow**: Special workflow for bespoke jewelry requests
+  - Consultation scheduling
+  - Design approval process
+  - Production tracking
+  - Customer communication logs
+
+#### Analytics & Reporting
+
+- **Sales Reports**: Revenue, popular products, seasonal trends
+- **Customer Analytics**: Purchase history, preferences, demographics
+- **Inventory Reports**: Stock levels, reorder alerts, slow-moving items
+- **Custom Order Metrics**: Conversion rates, average value, production time
+
+### Performance Optimization
+
+- **Image Optimization**: Responsive images with multiple resolutions
+- **Lazy Loading**: Images and content load as needed
+
+## Project Challenges & Solutions
+
+### Complex Product Variants
+
+**Challenge**: Managing numerous combinations of metals, stones, sizes, and
+styles while maintaining accurate inventory and pricing.
+
+**Solution**: Developed a flexible variant system that treats each combination
+as a separate inventory item while maintaining connection to the parent product
+for display purposes.
+
+### Custom Order Workflow
+
+**Challenge**: Creating a streamlined process for custom jewelry requests that
+balances customer creativity with production feasibility.
+
+**Solution**: Implemented a structured submission form that guides users through
+providing necessary information, followed by a direct communication channel with
+master jewelers.
+
+### International Pricing
+
+**Challenge**: Displaying accurate prices across different currencies and
+regions with varying tax structures.
+
+**Solution**: Integrated currency conversion API with geolocation-based pricing
+and tax calculation based on customer shipping address.

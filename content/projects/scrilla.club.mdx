@@ -1,0 +1,114 @@
+---
+title: Scrilla.Club - Role-Based Affiliate E-Commerce
+summary:
+  A sophisticated e-commerce platform with a hierarchical influencer and agency
+  marketing system.
+image: /images/projects/scrilla.png
+author: 'Vineet Katiyar'
+publishedAt: '2025-15-10'
+---
+
+# Scrilla.Club - Role-Based Affiliate E-Commerce
+
+- **Live Demo:** [Scrilla.Club](https://scrilla.club)
+
+[Scrilla.Club](https://scrilla.club) is a full-stack e-commerce platform
+specializing in fashion, powered by a unique dual-role affiliate system. It goes
+beyond traditional shopping by integrating a multi-tiered marketing structure
+where users can participate as **Influencers** or **Agencies** to earn
+commissions, turning customers into brand advocates.
+
+### Core Technologies
+
+1.  **Frontend:** React, React Router DOM, Redux Toolkit, Tailwind CSS
+2.  **Backend:** Node.js, Express.js
+3.  **Database & ORM:** PostgreSQL, Prisma
+4.  **Authentication:** JWT, bcryptjs
+5.  **State Management:** React Hooks (useState, Redux Toolkit, useReducer)
+6.  **Payments:** (e.g., Razorpay, Stripe, PayPal)
+
+## Project Outline & Key Features
+
+### 1. Introduction & Architecture
+
+Overview of the project's unique value proposition and the technical stack
+chosen to build a complex user hierarchy.
+
+### 2. Application Setup & UI Foundation
+
+Initialized the React application, set up routing, and implemented the core
+layout using Tailwind CSS for a responsive design.
+
+### 3. Database Schema Design with Prisma
+
+Designed and implemented the complex PostgreSQL database models using Prisma
+ORM. Key models include:
+
+- `User` (with roles: `CUSTOMER`, `INFLUENCER`, `AGENCY`, `ADMIN`)
+- `Passkey` (tracking global keys, parent-child relationships, and activation
+  status)
+- `Product`, `Order`, `OrderItem`
+- `Commission` (to log every transaction in the referral chain)
+
+### 4. Authentication & Authorization System
+
+Built a secure JWT-based authentication flow that also handles role-based access
+control (RBAC), ensuring Influencers, Agencies, and Admins access only their
+permitted features.
+
+### 5. Global Passkey Management (Admin)
+
+Developed an admin interface to generate and distribute the global Influencer
+and Agency passkeys. This is the seed for the entire referral network.
+
+### 6. The Dual-Role Referral System
+
+The core innovation of the project. Implemented the logic for:
+
+- **Influencer Role:** Users who sign up with an Influencer passkey can refer
+  others. They earn a **10% commission** on direct referrals' purchases.
+- **Agency Role:** Users who sign up with an Agency passkey can recruit
+  Influencers. They earn a **2% commission** on all sales made by their entire
+  network of Influencers and sub-referrals.
+
+### 7. Passkey Activation Workflow
+
+Engineered the conditional activation system:
+
+- Passkeys from the admin are active immediately.
+- Passkeys from an Agency create active Influencer accounts.
+- Passkeys from an Influencer are only activated after the new user's first
+  purchase (e.g., of ₹10,000).
+
+### 8. Real-Time Commission Engine
+
+Created a backend service that triggers on every successful order payment. It
+traverses the referral tree, calculates commissions for eligible parents
+(Influencers and Agencies) based on the predefined percentages, and records them
+in the database.
+
+### 9. User Dashboard & Analytics
+
+Built personalized dashboards for Influencers and Agencies to track their
+earnings, view referral history, manage their passkeys, and monitor their
+network's performance.
+
+### 10. Product Catalog & Shopping Cart
+
+Implemented the standard e-commerce features: product listings, filters, search,
+and a persistent shopping cart.
+
+### 11. Checkout & Payment Integration
+
+Integrated a secure payment gateway (e.g., Razorpay) to handle transactions,
+which also serves as the trigger event for commission distribution.
+
+### 12. Order History & Management
+
+Developed interfaces for users to view their order history and for admins to
+manage orders and update their status.
+
+This project was a significant exercise in full-stack development, requiring
+deep collaboration between frontend and backend to solve complex problems
+related to data relationships, financial calculations, and user lifecycle
+management.
