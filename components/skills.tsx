@@ -23,23 +23,37 @@ import { TbApi } from 'react-icons/tb'
 import { DiMongodb as MongooseIcon } from 'react-icons/di'
 import { RiBearSmileFill } from 'react-icons/ri'
 
-// Your existing data
+// Your existing data with added proficiency levels (0-100)
 export const frontend = [
-  'HTML',
-  'CSS',
-  'JavaScript',
-  'TypeScript',
-  'React',
-  'Next.js',
-  'Tailwind',
-  'Zustand',
-  'React Query',
-  'Redux Toolkit'
+  { name: 'HTML', level: 90 },
+  { name: 'CSS', level: 85 },
+  { name: 'JavaScript', level: 80 },
+  { name: 'TypeScript', level: 60 },
+  { name: 'React', level: 80 },
+  { name: 'Next.js', level: 70 },
+  { name: 'Tailwind', level: 85 },
+  { name: 'Zustand', level: 75 },
+  { name: 'React Query', level: 75 },
+  { name: 'Redux Toolkit', level: 80 }
 ] as const
 
-export const backend = ['Node.js', 'Prisma', 'Express', 'Mongoose'] as const
-export const database = ['PostgreSQL', 'MongoDB', 'MySQL'] as const
-export const versionControl = ['Git', 'GitHub'] as const
+export const backend = [
+  { name: 'Node.js', level: 85 },
+  { name: 'Prisma', level: 80 },
+  { name: 'Express', level: 80 },
+  { name: 'Mongoose', level: 80 }
+] as const
+
+export const database = [
+  { name: 'PostgreSQL', level: 70 },
+  { name: 'MongoDB', level: 80 },
+  { name: 'MySQL', level: 70 }
+] as const
+
+export const versionControl = [
+  { name: 'Git', level: 80 },
+  { name: 'GitHub', level: 90 }
+] as const
 
 // Map skills to icons
 const skillIcons: Record<string, React.ReactElement> = {
@@ -73,31 +87,44 @@ export default function Skills() {
   ]
 
   return (
-    <section id='skills' className='pb-16'>
-      <h2 className='title text-2xl md:text-3xl mb-12 font-bold text-foreground'>My Skills</h2>
+    <section id='skills' className='pb-12'>
+      {/* Your original heading style */}
+      <h2 className='title text-2xl md:text-3xl mb-5 font-bold text-foreground'>My Skills</h2>
 
-      <div className='grid gap-8'>
-        {skillCategories.map((category, categoryIndex) => (
-          <div
-            key={categoryIndex}
-            className='rounded-lg border p-6 bg-card'
-          >
+      <div className='space-y-8'>
+        {skillCategories.map((category) => (
+          <div key={category.title} className='space-y-4'>
+            {/* Your original category header style */}
             <h3 className='mb-6 text-xl font-semibold text-foreground'>
               {category.title}
             </h3>
 
-            <div className='grid grid-cols-2 gap-4 sm:grid-cols-4'>
-              {category.skills.map((skill, index) => (
-                <div
-                  key={index}
-                  className='flex flex-col items-center justify-center rounded-lg border py-2 transition-all hover:scale-105 bg-card'
-                >
-                  <div className='mb-2 text-2xl'>
-                    {skillIcons[skill] || <TbApi className='text-foreground' />}
+            {/* Compact Progress Bars Grid */}
+            <div className='grid grid-cols-1 sm:grid-cols-2 gap-3'>
+              {category.skills.map((skill) => (
+                <div key={skill.name} className='flex items-center gap-2 p-2 rounded-md border border-border bg-card hover:bg-accent/5 transition-colors duration-200'>
+                  {/* Icon */}
+                  <div className='text-lg text-foreground flex-shrink-0'>
+                    {skillIcons[skill.name]}
                   </div>
-                  <span className='text-sm font-medium text-foreground'>
-                    {skill}
-                  </span>
+                  
+                  {/* Name and Progress Bar */}
+                  <div className='flex-1 min-w-0'>
+                    <div className='flex items-center justify-between mb-1'>
+                      <span className='text-xs font-medium text-foreground truncate'>
+                        {skill.name}
+                      </span>
+                      <span className='text-xs text-muted-foreground ml-2 flex-shrink-0'>
+                        {skill.level}%
+                      </span>
+                    </div>
+                    <div className='w-full h-1.5 bg-muted rounded-full overflow-hidden'>
+                      <div
+                        className='h-full bg-primary rounded-full transition-all duration-700 ease-out'
+                        style={{ width: `${skill.level}%` }}
+                      />
+                    </div>
+                  </div>
                 </div>
               ))}
             </div>
