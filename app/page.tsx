@@ -3,6 +3,8 @@ import NewsletterForm from '@/components/news-letter-form'
 import RecentPosts from '@/components/recent-posts'
 import RecentProjects from '@/components/recent-projects'
 import Skills from '@/components/skills'
+import Contact from './contact/page'
+import ContactForm from '@/components/contact-form'
 
 export default function Home() {
   return (
@@ -12,7 +14,8 @@ export default function Home() {
         <RecentPosts />
         <RecentProjects />
         <Skills />
-        <NewsletterForm />
+        <ContactForm />
+        {/* <NewsletterForm /> */}
       </div>
     </section>
   )
