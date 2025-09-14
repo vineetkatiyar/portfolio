@@ -23,7 +23,7 @@ export default function Header() {
   const handleResumeDownload = () => {
     // Create a link element
     const link = document.createElement('a')
-    link.href = '/vineet_katiyar_fullStack_developer.pdf'
+    link.href = '/vineet_katiyar_fullStack_developer_resume.pdf'
     link.download = 'vineet_katiyar_Resume.pdf' // You can customize the downloaded filename
     document.body.appendChild(link)
     link.click()
