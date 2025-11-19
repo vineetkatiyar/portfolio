@@ -1,0 +1,84 @@
+---
+title: Story App
+summary:
+A full-stack storytelling platform where authors write stories, readers explore infinite scrolling content, and admins manage users & stories.
+image: /images/projects/story.png
+author: 'Vineet Katiyar'
+publishedAt: '2025-19-11'
+---
+
+# 📚 Story App
+
+A full-stack storytelling platform where authors write stories, readers explore infinite scrolling content, and admins manage users & stories.
+
+Built with **Next.js, React Query, Node.js, Express, Prisma, PostgreSQL**.
+
+---
+
+## 🚀 Features
+- Multi-author story publishing  
+- Rich text editor  
+- Infinite scroll (cursor pagination)  
+- JWT authentication  
+- Admin panel  
+- Tags, categories & search  
+
+---
+
+## 🧰 Tech Stack
+**Frontend:** Next.js, React Query, Tailwind , Shadcn ui, Typescript, Zustand
+**Backend:** Node.js, Express, Prisma, Zod  
+**Database:** PostgreSQL  
+
+---
+
+## 📁 Folder Structure
+
+```bash
+/backend
+/frontend
+README.mdx
+```
+
+```jsx
+🔌 API Endpoints Overview
+Auth
+
+POST /api/auth/register
+
+POST /api/auth/login
+
+POST /api/auth/refresh
+
+POST /api/auth/logout
+
+Stories
+
+GET /api/stories?cursor=&limit=10
+
+GET /api/stories/:id
+
+POST /api/stories (AUTHOR)
+
+PUT /api/stories/:id
+
+DELETE /api/stories/:id
+
+POST /api/stories/:id/publish
+
+Admin
+
+GET /api/admin/users
+
+PUT /api/admin/users/:id/role
+
+GET /api/admin/stories
+
+🔐 Roles
+
+READER — Can read stories
+
+AUTHOR — Can create/edit/publish stories
+
+ADMIN — Full access, moderation tools
+```

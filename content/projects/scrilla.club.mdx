@@ -5,110 +5,315 @@ summary:
   marketing system.
 image: /images/projects/scrilla.png
 author: 'Vineet Katiyar'
-publishedAt: '2025-15-10'
+publishedAt: '2025-15-11'
 ---
 
-# Scrilla.Club - Role-Based Affiliate E-Commerce
+# 🧵 Scrilla — Commission-Based Clothing E-Commerce Platform
 
-- **Live Demo:** [Scrilla.Club](https://scrilla.club)
+Scrilla is a production-grade clothing e-commerce platform featuring a **multi-level commission system**, **passkey-based registration**, **wallet with Scrilla Points (SP)**, **leaderboards**, and a fully functional **admin panel**.  
+This case study explains the entire architecture, logic, and my contributions.
 
-[Scrilla.Club](https://scrilla.club) is a full-stack e-commerce platform
-specializing in fashion, powered by a unique dual-role affiliate system. It goes
-beyond traditional shopping by integrating a multi-tiered marketing structure
-where users can participate as **Influencers** or **Agencies** to earn
-commissions, turning customers into brand advocates.
+> ⚠ This is a professional case study.  
+> Actual source code cannot be shared due to NDA, but every feature, flow, architecture, and implementation is described clearly.
 
-### Core Technologies
+---
 
-1.  **Frontend:** React, React Router DOM, Redux Toolkit, Tailwind CSS
-2.  **Backend:** Node.js, Express.js
-3.  **Database & ORM:** PostgreSQL, Prisma
-4.  **Authentication:** JWT, bcryptjs
-5.  **State Management:** React Hooks (useState, Redux Toolkit, useReducer)
-6.  **Payments:** (e.g., Razorpay, Stripe, PayPal)
+# 🚀 Live Website  
+👉 https://scrilla.club  
+---
 
-## Project Outline & Key Features
+# 🏗️ System Architecture
 
-### 1. Introduction & Architecture
+This diagram represents the entire system flow including frontend, backend, DB, and external integrations.
 
-Overview of the project's unique value proposition and the technical stack
-chosen to build a complex user hierarchy.
+---
 
-### 2. Application Setup & UI Foundation
+# 🎯 What is Scrilla?
 
-Initialized the React application, set up routing, and implemented the core
-layout using Tailwind CSS for a responsive design.
+Scrilla is a **clothing e-commerce platform** where users can shop and influencers/agencies earn **up to 10% commission** on purchases made via their referral passkeys.
 
-### 3. Database Schema Design with Prisma
+Key Features:
+- Passkey-based registration (NO open signup)
+- Multi-level referral system
+- Influencer & agency hierarchy
+- Commission unlock after 15 days (return period)
+- SP (Scrilla Points) based wallet & redemption
+- Leaderboard ranking
+- Full e-commerce flow + shipping + payments
+- Complete admin panel
 
-Designed and implemented the complex PostgreSQL database models using Prisma
-ORM. Key models include:
+---
 
-- `User` (with roles: `CUSTOMER`, `INFLUENCER`, `AGENCY`, `ADMIN`)
-- `Passkey` (tracking global keys, parent-child relationships, and activation
-  status)
-- `Product`, `Order`, `OrderItem`
-- `Commission` (to log every transaction in the referral chain)
+# 🧩 User Roles & Permissions
 
-### 4. Authentication & Authorization System
+Scrilla has **3 main user roles**:
 
-Built a secure JWT-based authentication flow that also handles role-based access
-control (RBAC), ensuring Influencers, Agencies, and Admins access only their
-permitted features.
+### 👑 Admin
+- System owner  
+- Generates **global passkeys**  
+- Manages products, banners, orders, categories, collections, tags  
+- Manages staff permissions  
+- Dashboard analytics  
 
-### 5. Global Passkey Management (Admin)
+### ⭐ Influencer
+- Registers using **Influencer Global Passkey**  
+- Gets their own passkey to share  
+- Passkey becomes active after minimum purchase (e.g., ₹10,000)  
+- Earns **10% commission** on direct referrals  
+- SP wallet, referrals, leaderboard visible  
 
-Developed an admin interface to generate and distribute the global Influencer
-and Agency passkeys. This is the seed for the entire referral network.
+### 🏢 Agency
+- Registers using **Agency Global Passkey**  
+- Can give passkeys only to influencers  
+- Earns **2% commission** on influencer purchases  
 
-### 6. The Dual-Role Referral System
 
-The core innovation of the project. Implemented the logic for:
+---
 
-- **Influencer Role:** Users who sign up with an Influencer passkey can refer
-  others. They earn a **10% commission** on direct referrals' purchases.
-- **Agency Role:** Users who sign up with an Agency passkey can recruit
-  Influencers. They earn a **2% commission** on all sales made by their entire
-  network of Influencers and sub-referrals.
+# 🔐 Passkey System (Core Feature)
 
-### 7. Passkey Activation Workflow
+Registration is **100% passkey based**.
 
-Engineered the conditional activation system:
+### 🟢 Admin:
+Has 2 global passkeys:
+- Influencer Global Passkey  
+- Agency Global Passkey  
 
-- Passkeys from the admin are active immediately.
-- Passkeys from an Agency create active Influencer accounts.
-- Passkeys from an Influencer are only activated after the new user's first
-  purchase (e.g., of ₹10,000).
+### 🟡 Influencer Passkey:
+- Influencer gets their own passkey  
+- Passkey activates only after completing minimum purchase  
+- Before activation → cannot refer  
 
-### 8. Real-Time Commission Engine
+### 🔵 Agency Passkey:
+- Agency can give passkey only to influencers  
+- Cannot refer another agency  
 
-Created a backend service that triggers on every successful order payment. It
-traverses the referral tree, calculates commissions for eligible parents
-(Influencers and Agencies) based on the predefined percentages, and records them
-in the database.
+---
 
-### 9. User Dashboard & Analytics
+# 💰 Commission Structure (SP System)
 
-Built personalized dashboards for Influencers and Agencies to track their
-earnings, view referral history, manage their passkeys, and monitor their
-network's performance.
+Commission is earned when your referred user purchases a product:
+- Influencer’s referred user purchases → Influencer earns 10%
+- Influencer belongs to Agency → Agency earns 2%
 
-### 10. Product Catalog & Shopping Cart
+Important:
+- Only DIRECT parent earns from child purchase  
+- No multi-level chain (simple 1-level structure)  
+- Commission unlocks after **15 days** (return period)  
+- SP = Scrilla Points  
+- **1 SP = 1 Rupee**  
+- SP usable at checkout  
+- SP withdrawable to bank  
 
-Implemented the standard e-commerce features: product listings, filters, search,
-and a persistent shopping cart.
+---
 
-### 11. Checkout & Payment Integration
+# 💼 Wallet System
 
-Integrated a secure payment gateway (e.g., Razorpay) to handle transactions,
-which also serves as the trigger event for commission distribution.
+### 1️⃣ Scrilla Points  
+- SP balance  
+- Lifetime earnings  
+- Level system  
+- Discount unlock  
+- Progress ring  
 
-### 12. Order History & Management
+### 2️⃣ My Referrals  
+Displays:
+- Name  
+- Phone  
+- Total Purchase  
+- Total Earned SP  
+- Referral tree  
+- Passkey share (QR + link)  
 
-Developed interfaces for users to view their order history and for admins to
-manage orders and update their status.
+### 3️⃣ Leaderboard  
+- Monthly ranking  
+- Influencers & agencies  
+- Auto reset each month  
+---
 
-This project was a significant exercise in full-stack development, requiring
-deep collaboration between frontend and backend to solve complex problems
-related to data relationships, financial calculations, and user lifecycle
-management.
+# 🛍️ E-Commerce Features (Client Side)
+
+- Passkey-based signup  
+- Session-based login (no JWT)  
+- Product listing  
+- Product details  
+- Variants (size, color, stock)  
+- Wishlist  
+- Cart  
+- Search  
+- Filters  
+- Categories  
+- Collections  
+- Razorpay payment  
+- ShipRocket shipping/tracking  
+- Order history  
+- Order tracking timeline  
+- Ratings & reviews  
+- Apply SP during checkout  
+- Minimum SP usage condition (dynamic)  
+
+---
+
+# 🔧 Admin Panel Features
+
+### 🖥 Admin Dashboard  
+- Total sales  
+- Total customers  
+- Total earnings  
+- Charts  
+- Recent orders  
+- Top selling products  
+
+### 🏙 Banner Management  
+- Mobile & desktop images/videos  
+
+### 📚 Collections & Categories  
+- Add/edit/delete  
+- Assign products  
+
+### 🛒 Product Management  
+- Create/edit product  
+- Price, SKU, description  
+- Assign collection, tags  
+- Variant creation (size, color, stock)  
+- Thumbnail upload  
+- Multiple images via S3/ImageKit  
+- Bulk upload using Excel 
+
+### 📦 Orders  
+- Track complete order lifecycle  
+- Packing → Shipping → Delivery  
+- ShipRocket integration  
+
+### 💳 Payments  
+- Razorpay logs  
+- Payment status  
+
+### 👥 Customers  
+- Customer details  
+- Addresses  
+- Order history  
+
+### 🛡 Staff Permissions  
+- Route-level permission management  
+
+### 📬 Contact Queries  
+- Received via contact-us form  
+
+### 🔑 Admin Profile  
+- Shows both global passkeys  
+- Profile update  
+
+---
+
+# ⚙️ Tech Stack (Production Ready)
+
+### **Frontend**
+- React + Vite  
+- Redux Toolkit  
+- Tailwind CSS  
+- ShadCN UI  
+
+### **Backend**
+- Node.js  
+- Express.js  
+- Prisma ORM  
+
+### **Database**
+- PostgreSQL  
+
+### **Caching & Sessions**
+- Redis  
+
+### **Storage**
+- AWS S3  
+- ImageKit CDN  
+
+### **Payments**
+- Razorpay  
+
+### **Shipping**
+- ShipRocket API  
+
+### **Emails**
+- NodeMailer  
+
+---
+
+# 🧬 Database Overview (Prisma ORM)
+
+Key tables include:
+- `User` (roles, hierarchy)  
+- `GlobalPasskey`  
+- `Wallet`  
+- `WalletTransaction`  
+- `LifetimeEarnings`  
+- `MonthlyEarnings`  
+- `Order`  
+- `OrderItems`  
+- `Transaction`  
+- `Product`  
+- `Category`, `Collection`, `Tags`  
+- `Replacement`, `Review`, `Staff`  
+
+---
+
+# 🧮 Commission Unlock Flow (Backend Logic)
+
+1. User purchases product
+2. Order created → Razorpay payment success
+3. ShipRocket handles shipping
+4. Order delivered
+5. Cron job runs at night
+6. Checks unlockAfter (15 days)
+7. WalletTransaction → COMPLETED
+8. SP credited to influencer & agency
+9. MonthlyEarnings & LifetimeEarnings updated
+
+---
+
+# 🛠 My Contributions (Full Stack Work)
+
+### **Frontend**
+- Influencer dashboard  
+- Wallet system UI  
+- Referral page  
+- Leaderboard  
+- Product pages  
+- Cart/Wishlist  
+- ShadCN UI components  
+- State management using Redux Toolkit  
+
+### **Backend**
+- Passkey system (activation, pending activation, logs)  
+- Multi-level commission logic  
+- Wallet system + SP-based transactions  
+- Cron jobs for unlock logic  
+- Prisma schema design  
+- Razorpay integration  
+- ShipRocket API integration  
+- Image uploads to AWS S3 & ImageKit  
+- Transactional emails (NodeMailer)  
+- Admin panel APIs
+
+---
+
+# 🧾 Why This Project Is Valuable
+
+This project demonstrates:
+- Real-world architecture  
+- Full-stack responsibilities  
+- Complex business logic  
+- Scalable referral system  
+- Payment + shipping integrations  
+- Production database management  
+- Modern tech stack in action  
+
+---
+
+# 📞 Contact
+
+**Vineet Katiyar**  
+Full Stack Developer  
+📧 Email: vineetkatiyar98@gmail.com  
+🔗 LinkedIn: https://www.linkedin.com/in/vineetkatiyar98

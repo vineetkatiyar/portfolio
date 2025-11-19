@@ -7,167 +7,290 @@ summary:
   filtering, detailed product specifications, and multiple payment options.
 image: /images/projects/jupi.png
 author: 'Vineet Katiyar'
-publishedAt: '2025-15-10'
+publishedAt: '2025-15-11'
+---
+# 💎 JupiDiamonds — Premium Jewellery E-Commerce Platform  
+A high-end jewellery e-commerce platform offering gold, diamond and gemstone jewellery with advanced product variations, live price calculations, multi-currency support, PayPal + Razorpay payments, a full admin dashboard, and complete product customization.
+
+This case-study showcases the production features, architecture & my contributions to the project.
+
+> 📌 *Source code is not included due to company policy.  
+> This repository contains a detailed case-study of the real project.*
+
 ---
 
-## 💎 Jupi Diamonds - Custom Jewelry E-Commerce Platform
+# 🌐 Live Website  
+https://jupidiamonds.com
+---
 
-**Live Demo:** [JupiDiamonds.com](https://jupidiamonds.com)
+# 🏗️ System Architecture
 
-### Overview
+This diagram explains the full flow between frontend, backend and database.
+---
 
-Jupi Diamonds is a sophisticated e-commerce platform specializing in custom
-jewelry, offering both ready-to-ship pieces and bespoke custom design services.
-The platform provides a seamless shopping experience with advanced filtering,
-detailed product specifications, and multiple payment options.
+# 🎯 What is JupiDiamonds?
 
-### Tech Stack
+JupiDiamonds is a premium jewellery e-commerce store where users can browse, customize and purchase:
 
-- **Frontend:** React.js, Redux Toolkit, Context API, Tailwind CSS, React Hook
-  Form, zod
-- **Backend:** Node.js, Express.js
-- **Database and ORM:** Prisma and Postgresql
-- **Authentication:** session, bcryptjs
-- **Payment Gateways:** Razorpay, PayPal
-- **Image Storage:** AWS S3
-- **Admin Panel:** Custom-built with RBAC (Role-Based Access Control)
+- Diamond Rings  
+- Earrings  
+- Necklaces  
+- Bracelets  
+- Bangles  
+- Gemstone jewellery  
+- Men’s collections  
+- Special gifts & occasions  
 
-### Client-Side Features
+The platform supports **highly complex product variants** like:
 
-#### Product Browsing & Detailed Specifications
+- Gold type (9K, 14K, 18K, 22K)  
+- Metal colors (Yellow, Rose Gold, White Gold, Platinum)  
+- Gemstone types & colors  
+- Diamond clarity, cut & carat weight  
+- Custom ring/bangle sizes  
+- Making charges (fixed / percentage)  
+- Global discounts  
+- GST calculation  
+- Multi-currency final price  
 
-- **Comprehensive Jewelry Catalog**: Browse rings, necklaces, bracelets,
-  earrings, and more
-- **Detailed Product Specifications**:
-  - Center stones (count, type, carat weight)
-  - Accent stones (count, type, arrangement)
-  - Side stones (count, placement details)
-  - Metal type, purity, and weight
-  - Dimensions and measurements
+---
 
-#### Advanced Filtering System
+# 🎨 Frontend (My Work)
 
-- **Multi-dimensional Filters**:
-  - Jewelry Type (Ring, Necklace, Bracelet, etc.)
-  - Collection (Engagement, Wedding, Fashion, etc.)
-  - Occasion (Wedding, Anniversary, Birthday, etc.)
-  - Weight Range (in grams)
-  - Price Range
-  - Style (Vintage, Modern, Classic, etc.)
-  - Metal Color (Yellow Gold, White Gold, Rose Gold, Platinum)
-  - Stone Color (D-E-F, G-H, I-J, etc.)
-  - Stone Type (Diamond, Sapphire, Ruby, Emerald)
+I developed **almost the entire frontend** of JupiDiamonds using **React + Vite + Tailwind CSS + Context API**.
 
-#### Shopping Cart & Customization
+### ✔ Home Page  
 
-- **Size Selection**: Ring size options with international conversion
-- **Screw Options**: Customizable screw types for certain jewelry items
-- **Gift Cards & Coupons**: Apply discount codes and gift cards at checkout
-- **Save for Later**: Option to save items without purchasing immediately
+- Trending products  
+- Shop by shape  
+- Shop by style  
+- Shop by carat weight  
+- Men’s collection  
+- Gifts & occasions  
+- Daily wear  
+- SEO-optimized sections  
 
-#### Custom Order Creation
+---
 
-- **Custom Design Portal**: Users can submit their own jewelry designs
-- **Specification Form**: Detailed form for custom requirements
-- **Image Upload**: Ability to upload reference images or inspiration
-- **Direct Communication**: Admin contact via WhatsApp for custom orders
-- **Status Tracking**: Monitor custom order progress through dashboard
+# 🛒 Shop All Page  
 
-#### Payment Processing
+Advanced dynamic filters:
 
-- **Dual Payment Gateway Integration**:
-  - Razorpay (popular in India and surrounding regions)
-  - PayPal (global payment processing)
-- **Multiple Currency Support**: USD, INR, EUR, GBP, and more
+- Jewellery type  
+- Product style  
+- Metal color  
+- Diamond color  
+- Gemstone color  
+- Shapes  
+- Carat weight  
+- Occasion  
+- Price  
+- Collection  
+- Pagination via “Load More”  
 
-### Admin Panel Features
+---
 
-#### Product Management
+# 💎 Product Details Page (My Most Important Work)
 
-- **Product Creation**: Add new jewelry items with detailed specifications
-- **Variant System**: Manage multiple variants of the same product
-  - Different sizes, metals, or stone options
-  - Inventory tracking for each variant
-  - Separate pricing for variants
+I built the highly dynamic and complex **product variant UI**, including:
 
-#### Automated Pricing System
+- Variant images / videos  
+- Metal type switcher  
+- Metal color switcher  
+- Gemstone type selection  
+- Size selection  
+- Dynamic price calculation (real-time updates)  
+- Real-time tax, GST & making charge calculation  
+- Product specifications section  
+- Shipping info  
+- Price breakup (gold, gemstone, making charges, GST)  
 
-- **Making Charge Calculator**: Automated calculation based on:
-  - Metal type and current market rates
-  - Labor complexity and craftsmanship required
-  - Stone setting complexity
-  - Design intricacy
-- **Dynamic Pricing**: Real-time price updates based on material costs
+This was one of the most challenging parts because jewellery products have dozens of variant combinations.
 
-#### Marketing Tools
+---
 
-- **Coupon Management**: Create and manage discount codes
-  - Percentage-based discounts
-  - Fixed amount discounts
-  - Limited-time offers
-  - Usage limits per customer
-- **Gift Card System**: Issue and track gift cards
-  - Purchase and redemption tracking
-  - Balance management
-  - Expiration date control
+# 🧺 Cart, Wishlist & Checkout  
 
-#### User Management & RBAC
+Features:
 
-- **Customer Management**: View and manage customer accounts
-- **Role-Based Access Control**:
-  - Super Admin: Full system access
-  - Content Manager: Product and content management
-  - Order Manager: Process orders and updates
-  - Support Staff: Customer communication and issue resolution
-- **Activity Logging**: Track all admin actions for security
+- Add/Remove variants  
+- Size management  
+- Wishlist  
+- Currency switcher (Context API)  
+- Razorpay & PayPal  
+- Referral code apply  
+- Gift card apply  
+- Auto price recalculation  
+- Address selection  
 
-#### Order Processing System
+---
 
-- **Order Dashboard**: View all orders with filter options
-- **Status Management**: Update order status (Pending, Processing, Shipped,
-  Delivered)
-- **Custom Order Workflow**: Special workflow for bespoke jewelry requests
-  - Consultation scheduling
-  - Design approval process
-  - Production tracking
-  - Customer communication logs
+# 👤 User Profile Section  
 
-#### Analytics & Reporting
+Features:
 
-- **Sales Reports**: Revenue, popular products, seasonal trends
-- **Customer Analytics**: Purchase history, preferences, demographics
-- **Inventory Reports**: Stock levels, reorder alerts, slow-moving items
-- **Custom Order Metrics**: Conversion rates, average value, production time
+- Profile update  
+- Address book  
+- Order history  
+- Order cancellation  
+- Order tracking timeline  
+- Product rating & reviews  
+- Refund section  
+- “My Gifts” — admin-assigned gift cards  
 
-### Performance Optimization
+---
 
-- **Image Optimization**: Responsive images with multiple resolutions
-- **Lazy Loading**: Images and content load as needed
+# 🛠 Admin Panel (Frontend — I Built It)
+I created the entire admin panel UI including:
 
-## Project Challenges & Solutions
+### 📊 Dashboard  
+- Total sales  
+- Total orders  
+- Total products  
+- Total customers  
+- Product analytics  
+- Best selling products  
+- Recent orders  
+- Low stock alerts  
+- Custom order requests  
+- Sales graphs  
 
-### Complex Product Variants
+---
 
-**Challenge**: Managing numerous combinations of metals, stones, sizes, and
-styles while maintaining accurate inventory and pricing.
+## 🧩 Master Panels  
+### ✔ Jewellery Type  
+### ✔ Metal Color  
+### ✔ Metal Variants  
+### ✔ Gemstone Variants  
+### ✔ Making Charges  
+### ✔ Product Styles  
+### ✔ Collections  
+### ✔ Size Management  
+### ✔ Occasions  
+### ✔ Global Discounts  
 
-**Solution**: Developed a flexible variant system that treats each combination
-as a separate inventory item while maintaining connection to the parent product
-for display purposes.
+Each section included add/edit/delete forms with validations and image uploads.
 
-### Custom Order Workflow
+---
 
-**Challenge**: Creating a streamlined process for custom jewelry requests that
-balances customer creativity with production feasibility.
+## 🛍 Product Module  
+- Create product  
+- Add variants  
+- Add images/video  
+- Edit product  
+- Draft/save  
+- SEO meta fields  
+- Assign collections, styles, occasions  
 
-**Solution**: Implemented a structured submission form that guides users through
-providing necessary information, followed by a direct communication channel with
-master jewelers.
+---
 
-### International Pricing
+## 📦 Orders Panel  
+- View orders  
+- Change order status  
+- Refund management  
+- Order history timeline  
 
-**Challenge**: Displaying accurate prices across different currencies and
-regions with varying tax structures.
+---
 
-**Solution**: Integrated currency conversion API with geolocation-based pricing
-and tax calculation based on customer shipping address.
+## ⭐ Other Admin Features  
+- Low & Out of Stock  
+- Manage Customers  
+- Coupons  
+- Gift Card issuer panel  
+- Reviews & Ratings  
+- Support tickets  
+- CMS: Banners, Blogs  
+- RBAC (Roles, Permissions & Staff)  
+- Sales & Order Reports  
+
+---
+
+# 🔥 Backend (My Contribution)
+
+Although majority backend was handled by senior dev, I contributed to:
+
+### ✔ Simple Authentication APIs  
+- Login / Register  
+- Email verification  
+- OTP login  
+- Password reset  
+
+### ✔ Blog APIs  
+### ✔ Footer CMS APIs  
+### ✔ Customer profile APIs  
+### ✔ Address APIs  
+### ✔ Wishlist APIs  
+### ✔ Cart basic logic  
+### ✔ Product fetch & filters integration  
+
+Backend was built using:
+
+- Node.js  
+- Express  
+- Prisma ORM  
+- PostgreSQL  
+- Nodemailer  
+- AWS S3  
+- Twilio (OTP)
+
+---
+
+# 💼 Backend (Senior Developer Contribution)
+
+The advanced backend was handled by senior engineer:
+
+- ProductVariant creation logic  
+- Metal + Gemstone price calculation  
+- Making charge engine  
+- GST + tax engine  
+- Global discount system  
+- Order + payment (Razorpay + PayPal)  
+- Return & refund workflow  
+- Advanced RBAC system  
+- Notification engine  
+- Multi-currency support  
+
+---
+
+# ⚙️ Tech Stack
+
+### **Frontend:**  
+- React + Vite  
+- Tailwind CSS  
+- Context API  
+- Shadcn UI  
+- React Router  
+- Axios  
+
+### **Backend:**  
+- Node.js  
+- Express  
+- Prisma ORM  
+- PostgreSQL  
+- Nodemailer  
+- Twilio  
+- AWS S3  
+
+### **Payments:**  
+- Razorpay  
+- PayPal  
+
+### **Others:**  
+- Image upload (S3)  
+- Session authentication  
+- Currency conversion API  
+
+---
+
+# 🧾 My Key Contributions (Short Summary)
+
+- Built **90%+ frontend** of the entire platform  
+- Designed & implemented **highly complex product variant UI**  
+- Integrated **dynamic pricing calculations**  
+- Implemented **cart, wishlist, checkout, currency switch**  
+- Created **complete admin panel UI**  
+- Built **blog, footer, authentication & customer-backend modules**  
+- Worked closely with senior developer for backend integrations  
+- Integrated PayPal & Razorpay (frontend side)  
+---
+
